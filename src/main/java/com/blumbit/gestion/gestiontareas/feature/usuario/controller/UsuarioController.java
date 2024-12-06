@@ -13,7 +13,8 @@ import com.blumbit.gestion.gestiontareas.feature.usuario.command.DeleteUsuarioCo
 import com.blumbit.gestion.gestiontareas.feature.usuario.command.FindAllUsuarioCommand;
 import com.blumbit.gestion.gestiontareas.feature.usuario.command.FindByIdUsuarioCommand;
 import com.blumbit.gestion.gestiontareas.feature.usuario.command.UpdateUsuarioCommand;
-import com.blumbit.gestion.gestiontareas.feature.usuario.entity.Usuario;
+import com.blumbit.gestion.gestiontareas.feature.usuario.dto.request.UsuarioRequestDto;
+import com.blumbit.gestion.gestiontareas.feature.usuario.dto.response.UsuarioResponseDto;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -44,23 +45,23 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public List<Usuario> findAllUsuarios(){
+    public List<UsuarioResponseDto> findAllUsuarios(){
         return findAllUsuarioCommand.execute();
     }
 
     @GetMapping("/{id}")
-    public Usuario findUsuarioById(@PathVariable Integer id){
+    public UsuarioResponseDto findUsuarioById(@PathVariable Integer id){
         findByIdUsuarioCommand.setUserId(id);
         return findByIdUsuarioCommand.execute();
     }
     
     @PostMapping
-    public Usuario createUsuario(@RequestBody Usuario usuario) {
-        return createUsuarioCommand.execute(usuario);
+    public UsuarioResponseDto createUsuario(@RequestBody UsuarioRequestDto usuarioRequestDto) {
+        return createUsuarioCommand.execute(usuarioRequestDto);
     }
 
     @PutMapping("/{id}")
-    public Usuario actualizarUsuario(@RequestBody Usuario usuario,@PathVariable Integer id) {
+    public UsuarioResponseDto actualizarUsuario(@RequestBody UsuarioRequestDto usuario,@PathVariable Integer id) {
         return updateUsuarioCommand.execute(usuario, id);
     }
 

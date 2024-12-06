@@ -4,11 +4,15 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "usuario", schema = "gestion")
 public class Usuario {
@@ -34,5 +38,5 @@ public class Usuario {
 
     @Column(name = "usu_estado")
     private Short estado;
-
+    
 }

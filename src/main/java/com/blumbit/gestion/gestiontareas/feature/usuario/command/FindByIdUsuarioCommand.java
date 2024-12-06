@@ -3,11 +3,11 @@ package com.blumbit.gestion.gestiontareas.feature.usuario.command;
 import org.springframework.stereotype.Component;
 
 import com.blumbit.gestion.gestiontareas.common.Command;
-import com.blumbit.gestion.gestiontareas.feature.usuario.entity.Usuario;
+import com.blumbit.gestion.gestiontareas.feature.usuario.dto.response.UsuarioResponseDto;
 import com.blumbit.gestion.gestiontareas.feature.usuario.repository.UsuarioRepository;
 
 @Component
-public class FindByIdUsuarioCommand implements Command<Usuario>{
+public class FindByIdUsuarioCommand implements Command<UsuarioResponseDto>{
 
     private final UsuarioRepository usuarioRepository;
 
@@ -23,11 +23,11 @@ public class FindByIdUsuarioCommand implements Command<Usuario>{
     }
 
     @Override
-    public Usuario execute() {
+    public UsuarioResponseDto execute() {
         if(userId == null){
             throw new RuntimeException("Id de usuario no puede ser nulo");
         }
-        return usuarioRepository.findById(userId).get();
+        return UsuarioResponseDto.buildFromEntity(usuarioRepository.findById(userId).get());
     }
 
     //METODOS PROPIOS

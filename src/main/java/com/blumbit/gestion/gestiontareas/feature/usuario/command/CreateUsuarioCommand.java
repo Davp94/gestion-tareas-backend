@@ -1,6 +1,10 @@
 package com.blumbit.gestion.gestiontareas.feature.usuario.command;
 
 import org.springframework.stereotype.Service;
+
+import com.blumbit.gestion.gestiontareas.common.constant.EstadoEnum;
+import com.blumbit.gestion.gestiontareas.feature.usuario.dto.request.UsuarioRequestDto;
+import com.blumbit.gestion.gestiontareas.feature.usuario.dto.response.UsuarioResponseDto;
 import com.blumbit.gestion.gestiontareas.feature.usuario.entity.Usuario;
 import com.blumbit.gestion.gestiontareas.feature.usuario.repository.UsuarioRepository;
 
@@ -13,10 +17,14 @@ public class CreateUsuarioCommand {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public Usuario execute(Usuario usuario) {
+    public UsuarioResponseDto execute(UsuarioRequestDto usuarioRequestDto) {
         try {
-            Usuario usuarioCreated = usuarioRepository.save(usuario);
-            return usuarioCreated;
+            //TODO add avatar from image implemention
+            Usuario usuarioToCreated = UsuarioRequestDto.buildToEntity(usuarioRequestDto);
+            usuarioToCreated.setAvatar(null);
+            usuarioToCreated.setEstado((short)(EstadoEnum.ACTIVO.getValue()));
+            usuarioToCreated.setId((int) (usuarioRepository.count()+1));
+            return UsuarioResponseDto.buildFromEntity(usuarioRepository.save(usuarioToCreated));
         } catch (Exception e) {
             throw new RuntimeException("Error al crear el usuario");
         }
