@@ -8,6 +8,8 @@ import com.blumbit.gestion.gestiontareas.feature.usuario.entity.Usuario;
 
 public interface UsuarioRepository extends ListCrudRepository<Usuario, Integer>{
 
+    Optional<Usuario> findUsuarioByUsername(String email);
+
     // //QUERY METHODS
     // Optional<Usuario> findUsuarioByEmail(String email);
 
