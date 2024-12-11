@@ -2,7 +2,6 @@ package com.blumbit.gestion.gestiontareas.feature.usuario.repository;
 
 import java.util.Optional;
 
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.ListCrudRepository;
 import com.blumbit.gestion.gestiontareas.feature.usuario.entity.Usuario;
 

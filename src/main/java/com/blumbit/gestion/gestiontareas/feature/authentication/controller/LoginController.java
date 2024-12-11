@@ -3,6 +3,8 @@ package com.blumbit.gestion.gestiontareas.feature.authentication.controller;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.blumbit.gestion.gestiontareas.feature.authentication.dto.LoginRequestDto;
@@ -22,7 +24,8 @@ public class LoginController {
         this.jwtUtil = jwtUtil;
     }
 
-    public LoginResponseDto login(LoginRequestDto loginRequestDto){
+    @PostMapping
+    public LoginResponseDto login(@RequestBody LoginRequestDto loginRequestDto){
         UsernamePasswordAuthenticationToken login = new UsernamePasswordAuthenticationToken(loginRequestDto.getUsername(), loginRequestDto.getPassword());
         Authentication authentication = authenticationManager.authenticate(login);
         String jwt = jwtUtil.createToken(jwtUtil.createToken(loginRequestDto.getUsername()));
