@@ -1,4 +1,6 @@
-package com.blumbit.gestion.gestiontareas.feature.usuario.entity;
+package com.blumbit.gestion.gestiontareas.feature.tarea.entity;
+
+import com.blumbit.gestion.gestiontareas.feature.proyecto.entity.Proyecto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

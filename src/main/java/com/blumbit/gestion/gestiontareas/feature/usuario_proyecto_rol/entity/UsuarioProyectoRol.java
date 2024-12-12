@@ -1,4 +1,8 @@
-package com.blumbit.gestion.gestiontareas.feature.usuario.entity;
+package com.blumbit.gestion.gestiontareas.feature.usuario_proyecto_rol.entity;
+
+import com.blumbit.gestion.gestiontareas.feature.proyecto.entity.Proyecto;
+import com.blumbit.gestion.gestiontareas.feature.rol.entity.Rol;
+import com.blumbit.gestion.gestiontareas.feature.usuario.entity.Usuario;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,7 +11,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "usuarioProyectoRol", schema = "gestion")
 public class UsuarioProyectoRol {

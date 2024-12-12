@@ -24,11 +24,11 @@ public class LoginController {
         this.jwtUtil = jwtUtil;
     }
 
-    @PostMapping
+    @PostMapping()
     public LoginResponseDto login(@RequestBody LoginRequestDto loginRequestDto){
         UsernamePasswordAuthenticationToken login = new UsernamePasswordAuthenticationToken(loginRequestDto.getUsername(), loginRequestDto.getPassword());
         Authentication authentication = authenticationManager.authenticate(login);
-        String jwt = jwtUtil.createToken(jwtUtil.createToken(loginRequestDto.getUsername()));
+        String jwt = jwtUtil.createToken(loginRequestDto.getUsername());
         return LoginResponseDto.builder().token(jwt).build();
     }
 
