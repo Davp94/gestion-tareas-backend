@@ -1,6 +1,7 @@
 package com.blumbit.gestion.gestiontareas.feature.tarea.entity;
 
 import com.blumbit.gestion.gestiontareas.feature.proyecto.entity.Proyecto;
+import com.blumbit.gestion.gestiontareas.feature.usuario.entity.Usuario;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,7 +10,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+@Builder
 @Entity
 @Table(name = "tarea", schema = "gestion")
 public class Tarea {
@@ -30,4 +37,8 @@ public class Tarea {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pro_codigo")
     private Proyecto proyecto;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usu_codigo")
+    private Usuario usuario;
 }
