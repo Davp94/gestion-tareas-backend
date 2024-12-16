@@ -1,8 +1,8 @@
 package com.blumbit.gestion.gestiontareas.feature.authentication.controller;
 
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,20 +15,24 @@ import com.blumbit.gestion.gestiontareas.util.JwtUtil;
 @RequestMapping("/login")
 public class LoginController {
 
-    private final AuthenticationManager authenticationManager;
 
     private final JwtUtil jwtUtil;
 
-    public LoginController(AuthenticationManager authenticationManager, JwtUtil jwtUtil) {
-        this.authenticationManager = authenticationManager;
+    private final UserDetailsService userDetailsService;
+
+
+    public LoginController(JwtUtil jwtUtil,
+            UserDetailsService userDetailsService) {
         this.jwtUtil = jwtUtil;
+        this.userDetailsService = userDetailsService;
     }
 
     @PostMapping()
     public LoginResponseDto login(@RequestBody LoginRequestDto loginRequestDto){
         UsernamePasswordAuthenticationToken login = new UsernamePasswordAuthenticationToken(loginRequestDto.getUsername(), loginRequestDto.getPassword());
-        Authentication authentication = authenticationManager.authenticate(login);
-        String jwt = jwtUtil.createToken(loginRequestDto.getUsername());
+        UserDetails userDetails = userDetailsService
+            .loadUserByUsername(loginRequestDto.getUsername());
+        String jwt = jwtUtil.generateToken(userDetails);
         return LoginResponseDto.builder().token(jwt).build();
     }
 

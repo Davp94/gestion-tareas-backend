@@ -10,6 +10,8 @@ import com.blumbit.gestion.gestiontareas.feature.proyecto.repository.ProyectoRep
 import com.blumbit.gestion.gestiontareas.feature.usuario_proyecto_rol.command.CreateUsuarioProyectoRolCommand;
 import com.blumbit.gestion.gestiontareas.feature.usuario_proyecto_rol.dto.UsuarioProyectoRolRequestDto;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class CreateProyectoCommand {
 
@@ -23,6 +25,7 @@ public class CreateProyectoCommand {
         this.createUsuarioProyectoRolCommand = createUsuarioProyectoRolCommand;
     }
 
+    @Transactional
     public ProyectoResponseDto execute(ProyectoRequestDto proyectoRequestDto){
         Proyecto proyectoToCreate = ProyectoRequestDto.buildToEntity(proyectoRequestDto);
         proyectoToCreate.setId((short) (proyectoRepository.count()+1));
