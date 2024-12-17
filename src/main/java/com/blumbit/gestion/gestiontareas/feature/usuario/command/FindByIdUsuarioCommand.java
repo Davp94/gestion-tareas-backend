@@ -27,7 +27,12 @@ public class FindByIdUsuarioCommand implements Command<UsuarioResponseDto>{
         if(userId == null){
             throw new RuntimeException("Id de usuario no puede ser nulo");
         }
-        return UsuarioResponseDto.buildFromEntity(usuarioRepository.findById(userId).get());
+        try {
+            return UsuarioResponseDto.buildFromEntity(usuarioRepository.findById(userId).get());
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Usuario no encontrado");
+        }
+       
     }
 
     //METODOS PROPIOS

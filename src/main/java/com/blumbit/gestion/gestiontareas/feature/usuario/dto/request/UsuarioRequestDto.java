@@ -1,5 +1,7 @@
 package com.blumbit.gestion.gestiontareas.feature.usuario.dto.request;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.blumbit.gestion.gestiontareas.feature.usuario.entity.Usuario;
 
 import jakarta.validation.constraints.Email;
@@ -13,16 +15,16 @@ import lombok.Data;
 @Builder
 public class UsuarioRequestDto {
 
-    @NotNull()
+    @NotNull(message = "el email no puede ser nulo")
     @NotBlank()
     private String username;
 
-    @Email
+    @Email(message = "Email no tiene formato valido")
     private String email;
 
-    @Pattern(regexp = "")
+    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=!])(?=\\S+$).{8,16}$")
     private String password;
-
+    
     @NotNull()
     @NotBlank()
     private String nombres;
@@ -30,6 +32,8 @@ public class UsuarioRequestDto {
     @NotNull()
     @NotBlank()
     private String apellidos;
+
+    private MultipartFile avatar;
 
      public static Usuario buildToEntity(UsuarioRequestDto usuarioRequestDto){
         return Usuario.builder()
