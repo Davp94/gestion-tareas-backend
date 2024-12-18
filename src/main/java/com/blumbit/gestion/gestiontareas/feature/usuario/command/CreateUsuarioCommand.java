@@ -12,6 +12,9 @@ import com.blumbit.gestion.gestiontareas.feature.usuario.dto.response.UsuarioRes
 import com.blumbit.gestion.gestiontareas.feature.usuario.entity.Usuario;
 import com.blumbit.gestion.gestiontareas.feature.usuario.repository.UsuarioRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class CreateUsuarioCommand {
 
@@ -39,6 +42,7 @@ public class CreateUsuarioCommand {
             usuarioToCreated.setId((int) (usuarioRepository.count()+1));
             return UsuarioResponseDto.buildFromEntity(usuarioRepository.save(usuarioToCreated));
         } catch (RuntimeException e) {
+            log.error(e.getMessage(), e);
             throw new RuntimeException("Error al crear el usuario");
         } 
     }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -56,7 +57,7 @@ public class UsuarioController {
     }
     
     @PostMapping
-    public UsuarioResponseDto createUsuario(@RequestBody UsuarioRequestDto usuarioRequestDto) {
+    public UsuarioResponseDto createUsuario(@ModelAttribute UsuarioRequestDto usuarioRequestDto) {
         return createUsuarioCommand.execute(usuarioRequestDto);
     }
 

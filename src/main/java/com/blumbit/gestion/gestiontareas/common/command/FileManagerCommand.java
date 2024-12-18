@@ -21,7 +21,7 @@ public class FileManagerCommand {
 
     public String execute(MultipartFile file){
         //validate file
-        if(!validateFileType(file)){
+        if(validateFileType(file) == false){ //true //false
             throw new RuntimeException("Tipo de archivo no permitido. El formato debe ser PNG o JPG");
         }
            
@@ -53,7 +53,6 @@ public class FileManagerCommand {
             throw new RuntimeException("Archivo muy grande. Maximo tamaño permitido 5MB");
         }
         String contentType = file.getContentType();
-
-        return contentType.equals(MediaType.IMAGE_JPEG) || contentType.equals(MediaType.IMAGE_PNG);
+        return contentType.equals(MediaType.IMAGE_JPEG_VALUE) || contentType.equals(MediaType.IMAGE_PNG_VALUE);
     }
 }
