@@ -1,12 +1,10 @@
 package com.blumbit.gestion.gestiontareas.feature.usuario.command;
 
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.blumbit.gestion.gestiontareas.common.command.FileManagerCommand;
 import com.blumbit.gestion.gestiontareas.common.constant.EstadoEnum;
-import com.blumbit.gestion.gestiontareas.exception.DuplicateRegisterException;
 import com.blumbit.gestion.gestiontareas.feature.usuario.dto.request.UsuarioRequestDto;
 import com.blumbit.gestion.gestiontareas.feature.usuario.dto.response.UsuarioResponseDto;
 import com.blumbit.gestion.gestiontareas.feature.usuario.entity.Usuario;

@@ -41,15 +41,15 @@ public class RestExceptionHandler {
                 HttpStatus.FORBIDDEN);
     }
 
-    @ExceptionHandler(value = { NoSuchElementException.class })
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<ErrorResponse<String>> handleExceptionNotSuchElement(NoSuchElementException ex, HttpServletRequest request) {
-        log.error(ex.getMessage(), ex);
-        return new ResponseEntity<>(new ErrorResponse<String>(HttpStatus.BAD_REQUEST,
-                ex.getMessage(), new Date().toString(), request.getRequestURI()),
-                new HttpHeaders(),
-                HttpStatus.BAD_REQUEST);
-    }
+    // @ExceptionHandler(value = { NoSuchElementException.class })
+    // @ResponseStatus(HttpStatus.BAD_REQUEST)
+    // public ResponseEntity<ErrorResponse<String>> handleExceptionNotSuchElement(NoSuchElementException ex, HttpServletRequest request) {
+    //     log.error(ex.getMessage(), ex);
+    //     return new ResponseEntity<>(new ErrorResponse<String>(HttpStatus.BAD_REQUEST,
+    //             ex.getMessage(), new Date().toString(), request.getRequestURI()),
+    //             new HttpHeaders(),
+    //             HttpStatus.BAD_REQUEST);
+    // }
 
     @ExceptionHandler(value = { DuplicateRegisterException.class })
     @ResponseStatus(HttpStatus.BAD_REQUEST)
