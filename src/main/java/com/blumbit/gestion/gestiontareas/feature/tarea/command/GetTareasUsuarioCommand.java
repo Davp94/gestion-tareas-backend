@@ -19,7 +19,7 @@ public class GetTareasUsuarioCommand {
         this.tareaRepository = tareaRepository;
     }
 
-    List<TareaResponseDto> execute(TareaRequestDto tareaRequestDto){
+    public List<TareaResponseDto> execute(TareaRequestDto tareaRequestDto){
         List<Tarea> tareasRetrieved = tareaRepository.findByProyecto_IdAndUsuario_Id(tareaRequestDto.getProyectoId(), tareaRequestDto.getUsuarioId());
         return tareasRetrieved.stream().map(TareaResponseDto::buildFromEntity).collect(Collectors.toList());
     }

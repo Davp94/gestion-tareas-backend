@@ -16,12 +16,13 @@ import jakarta.persistence.EntityManager;
 @Service
 public class CreateUsuarioProyectoRolCommand {
 
-    private UsuarioProyectoRolRepository usuarioProyectoRolRepository;
+    private final UsuarioProyectoRolRepository usuarioProyectoRolRepository;
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
-    public CreateUsuarioProyectoRolCommand(UsuarioProyectoRolRepository usuarioProyectoRolRepository) {
+    public CreateUsuarioProyectoRolCommand(UsuarioProyectoRolRepository usuarioProyectoRolRepository, EntityManager entityManager) {
         this.usuarioProyectoRolRepository = usuarioProyectoRolRepository;
+        this.entityManager = entityManager;
     }
 
     public UsuarioProyectoRolResponseDto execute(UsuarioProyectoRolRequestDto usuarioProyectoRolRequestDto){

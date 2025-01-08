@@ -30,7 +30,7 @@ public class CreateTareaCommand {
         }
         Tarea tareaToCreate = TareaRequestDto.buildToEntity(tareaRequestDto);
         tareaToCreate.setId((int)(tareaRepository.count()+1));
-        tareaToCreate.setEstado((short) EstadoTareaEnum.BACKLOG.getValue());
+        tareaToCreate.setEstado((short) EstadoTareaEnum.TO_DO.getValue());
         tareaToCreate.setProyecto(entityManager.getReference(Proyecto.class, tareaRequestDto.getProyectoId()));
         tareaToCreate.setUsuario(entityManager.getReference(Usuario.class, tareaRequestDto.getUsuarioId()));
 

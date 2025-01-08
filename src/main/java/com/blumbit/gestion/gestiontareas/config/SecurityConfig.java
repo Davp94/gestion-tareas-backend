@@ -28,8 +28,11 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
 
         http.authorizeHttpRequests(customRequest -> {
-            customRequest.requestMatchers(HttpMethod.POST, "/login").permitAll()
-            .anyRequest().authenticated();
+            customRequest.requestMatchers(HttpMethod.POST, "/login").permitAll();
+            customRequest.requestMatchers(HttpMethod.GET, "/v3/api-docs/**").permitAll();
+            customRequest.requestMatchers(HttpMethod.GET, "/api-docs/**").permitAll();
+            customRequest.requestMatchers(HttpMethod.GET, "/swagger-ui/**").permitAll()
+            .anyRequest().permitAll();
         })
             .csrf(AbstractHttpConfigurer::disable)
             .cors(Customizer.withDefaults())

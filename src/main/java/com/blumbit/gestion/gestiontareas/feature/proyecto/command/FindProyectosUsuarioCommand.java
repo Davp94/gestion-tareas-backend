@@ -19,9 +19,9 @@ public class FindProyectosUsuarioCommand {
         this.usuarioProyectoRolRepository = usuarioProyectoRolRepository;
     }
 
-    public List<FindProyectoResponseDto> execute(FindProyectoRequestDto findProyectoRequestDto){
+    public List<FindProyectoResponseDto> execute(Integer usuarioId){
 
-        List<UsuarioProyectoRol> usuarioProyectoRolRetrieved = usuarioProyectoRolRepository.findByUsuario_id(findProyectoRequestDto.getUsuarioId());
+        List<UsuarioProyectoRol> usuarioProyectoRolRetrieved = usuarioProyectoRolRepository.findByUsuario_id(usuarioId);
         return usuarioProyectoRolRetrieved.stream().map(FindProyectoResponseDto::buildObject).collect(Collectors.toList());
     }
     

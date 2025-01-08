@@ -1,11 +1,9 @@
 package com.blumbit.gestion.gestiontareas.common.constant;
 
 public enum EstadoTareaEnum {
-    BACKLOG(0),
-    ASSIGN(1),
+    TO_DO(1),
     IN_PROGRESS(2),
-    COMPLETE(3),
-    CLOSE(4);
+    DONE(3);
 
     private final int valor;
 
